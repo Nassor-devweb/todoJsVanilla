@@ -5,10 +5,15 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-    entry: path.resolve(__dirname, "src/index.js"),
+    entry : {
+        main: path.join(__dirname, "src/index.js"),
+        inscription : path.join(__dirname, "src/inscription/inscription.js"),
+        login : path.join(__dirname, "src/login/login.js"),
+        todo : path.join(__dirname, "src/todo/todo.js")
+    },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "test.bundle.js"
+        path: path.join(__dirname, "dist"),
+        filename: "[name].bundle.js"
     },
     module: {
         rules: [
@@ -47,7 +52,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(),
+       /* new CleanWebpackPlugin(),
         new CompressionPlugin({
             filename: "[path].br[query]",
             algorithm: "brotliCompress",
@@ -56,29 +61,39 @@ module.exports = {
             threshold: 10240,
             minRatio: 0.8,
             deleteOriginalAssets: false
+        }),*/
+        new HtmlWebpackPlugin({
+            filename : "index.html",
+            template: path.join(__dirname, "./src/index.html"),
+            chunks : ["main"]
+            //hash: true
         }),
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
-            hash: true
+            filename : "inscription.html",
+            template: path.join(__dirname, "./src/inscription/inscription.html"),
+            chunks : ["inscription"]
+            //hash: true
+        }),
+        new HtmlWebpackPlugin({
+            filename : "login.html",
+            template: path.join(__dirname, "./src/login/login.html"),
+            chunks : ["login"]
+            //hash: true
+        }),
+        new HtmlWebpackPlugin({
+            filename : "todo.html",
+            template: path.join(__dirname, "./src/todo/todo.html"),
+            chunks : ["todo"]
+            //hash: true
         })
     ],
-    optimization: {
-        minimize: true,
-        minimizer: [
-            new TerserPlugin({
-                test: /\.js$/i,
-                terserOptions: {
-                    mangle: true
-                }
-            })
-        ]
-    },
+    stats: "minimal",
+    devtool : "source-map",
     mode: "development",
     devServer: {
-        static: path.resolve(__dirname, "./dist"),
+        //static: path.resolve(__dirname, "./dist"),
         open: true,
-        watchFiles: ['./src/**'],
-        hot: true,
+        static : path.resolve(__dirname,"./dist"),
         port: 4000
     }
 };

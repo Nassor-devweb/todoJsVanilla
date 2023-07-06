@@ -1,0 +1,12 @@
+@mixin displayFxBtwCtr {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin displayFxCtrCtr {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

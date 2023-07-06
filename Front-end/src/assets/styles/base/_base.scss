@@ -1,0 +1,23 @@
+:root {
+    font-size: 62.5%;
+}
+
+body,ul,h1,h2{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+li{
+    list-style-type: none;
+}
+section {
+    background-color: var(--divider);
+}

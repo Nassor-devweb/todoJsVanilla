@@ -1,0 +1,16 @@
+.header{
+    @include displayFxBtwCtr;
+    background-color: var(--dark);
+    font-size: $fontSizePrimary;
+    .header__heading {
+        padding: 10px 10px;
+    }
+    .nav {
+        .nav__list {
+            @include displayFxBtwCtr;
+            li {
+                padding: 10px 20px;
+            }
+        }
+    }
+}
