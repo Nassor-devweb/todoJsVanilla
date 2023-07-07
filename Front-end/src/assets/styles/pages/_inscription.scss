@@ -1,18 +1,21 @@
 .section-inscription {
-    height: calc(100vh - 48px);
+    height: calc(100vh - 58px);
     @include displayFxCtrCtr;
     font-size: $fontSizePrimary ;
     form {
-        width: 50%;
+        width: 40%;
         height: 50%;
-        padding: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
         .form-data {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-weight: bold;
+            width: 100%;
             input {
-                width: 60%;
+                height: 20px;
                 border-radius: 5px;
                 border: 1px solid var(--accent);
             }
