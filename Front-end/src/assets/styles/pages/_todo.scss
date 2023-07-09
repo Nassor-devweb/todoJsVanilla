@@ -1,0 +1,77 @@
+.section--todo{
+    height: calc(100vh - 58px);
+    padding-top: 50px;
+    font-size: $fontSizePrimary ;
+    @include displayFxCtrflxEnd;
+    .content {
+        width: 400px;max-width: 50%;
+        form{
+            display: flex;
+            justify-content: flex-start;
+            .tacheInput{
+                font-weight: bold;
+                width: 1000%;
+                display: flex;
+                align-items: flex-end;
+                height: 25px;
+                input{
+                    box-sizing: border-box;
+                    flex: 1;
+                    border: none;
+                    padding: 0px 3px;
+                    border-radius: 5px 0px 0px 5px;
+                    border: 1px solid var(--dark);
+                    height: 100%;
+                    outline: none;
+                    
+                }
+                .button--todo{
+                    display: block;
+                    height: 100%;
+                    border-radius: 0px 5px 5px 0px;
+                    font-weight: bold;
+                    border: 1px solid var(--dark);
+                    background-color: var(--dark);
+                        color: white;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+            
+
+        }
+        .list{
+            margin-top: 20px;
+            border: 1px solid var(--dark);
+            border-radius: 5px;
+            box-shadow: var(--box-shadow);
+            background-color: white;
+            padding: 20px 10px;
+            .task {
+                background-color: var(--divider);
+                border : 1px solid var(--dark);
+                border-radius: 3px;
+                padding: 2px 5px;
+                display: flex;
+                justify-content: space-between;
+                .ckeckValue{
+                    display: flex;
+                    justify-content: flex-start;
+                    span {
+                        margin-left: 5px;
+                    }
+                }
+                .icone {
+                    display: inline-block;
+                    .fa-solid {
+                        color: #8e44ad;
+                    }
+                    .fa-trash-can{
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
