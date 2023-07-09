@@ -10,7 +10,7 @@ btn.addEventListener('submit', (e) => {
     const password_user = document.querySelector('#password');
     user.email = email_user.value;
     user.password = password_user.value;
-    
+    error.textContent = ''; 
     const queryFetch = fetch('http://localhost:3000/login.php',{
         method : 'POST',
         headers : {
@@ -23,16 +23,10 @@ btn.addEventListener('submit', (e) => {
         try {
             console.log(resp)
             if(!resp.ok){
-                console.log('ok')
-
                 const userLog = await resp.json();
                 error.textContent = userLog.erreur; 
-                console.log(userLog)
-
             }else{
-                //location.href = './login.html'
-                const userLog = await resp.json();
-                console.log(userLog);
+                location.href = './todo.html'
             }
             
         }catch(err){

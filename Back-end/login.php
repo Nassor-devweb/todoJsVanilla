@@ -29,13 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $respQuery = null;
         $dataUser = null;
         try {
-            $stmt->execute();
-        } catch (PDOException $err) {
-            $respQuery = $err->getMessage();
-        }
-
-        if (is_null($respQuery)) {
+            $res = $stmt->execute();
             $dataUser = $stmt->fetch();
+            if (gettype($dataUser) !== 'array') {
+                $errorQuerry = new PDOException("Vous n'êtes pas inscris");
+                throw $errorQuerry;
+            }
+        } catch (PDOException $err) {
+            $respQuery = $err;
+        }
+        if (is_null($respQuery)) {
             if (password_verify($password_user, $dataUser['password_user'])) {
                 $resp = json_encode($dataUser);
                 echo $resp;
