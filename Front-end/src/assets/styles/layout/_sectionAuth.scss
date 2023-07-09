@@ -1,0 +1,48 @@
+.section--auth {
+    height: calc(100vh - 58px);
+    @include displayFxCtrCtr;
+    font-size: $fontSizePrimary ;
+    form {
+        width: 40%;
+        height: 50%;
+        border: 1px solid var(--accent);
+        box-shadow: var(--box-shadow);
+        padding: 0px 40px;
+        border-radius: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        .form-data {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+            width: 100%;
+            input {
+                height: 20px;
+                border-radius: 5px;
+                border: 1px solid var(--accent);
+            }
+        }
+        button {
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            padding: 5px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: 1px solid var(--dark);
+            &:hover {
+                background-color: var(--dark);
+                color: white;
+            }
+        }
+        .error{
+            display: block;
+            color : red ;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}

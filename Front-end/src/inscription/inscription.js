@@ -1,6 +1,7 @@
 import '../assets/styles/styles.scss'
 
 const form = document.querySelector('form');
+const error = document.querySelector('.error');
 
 form.addEventListener('submit',(e) => {
     e.preventDefault();
@@ -26,11 +27,12 @@ form.addEventListener('submit',(e) => {
 
     promiseSubmit.then(async resp => {
         try {
-
-            console.log(resp)
-            const body = await resp.json();
-            console.log(body)
-
+            if(!resp.ok){
+                const body = await resp.json();
+                error.textContent = body.erreur;            
+            }else{
+                location.href = './login.html'
+            }
         }catch(err){
             console.log(err)
         }
