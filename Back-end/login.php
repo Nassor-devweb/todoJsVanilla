@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (is_null($respQuery)) {
             if (password_verify($password_user, $dataUser['password_user'])) {
                 $resp = json_encode($dataUser);
+                
                 echo $resp;
             } else {
                 http_response_code(401);

@@ -41,6 +41,12 @@
             
 
         }
+        .error {
+            display : inline-block ;
+            margin-top: 10px;
+            text-align: center;
+            color: red;
+        }
         .list{
             margin-top: 20px;
             border: 1px solid var(--dark);
@@ -55,17 +61,24 @@
                 padding: 2px 5px;
                 display: flex;
                 justify-content: space-between;
+                margin-bottom: 10px;
                 .ckeckValue{
                     display: flex;
                     justify-content: flex-start;
                     span {
                         margin-left: 5px;
                     }
+                    input{
+                        cursor: pointer;
+                    }
                 }
                 .icone {
                     display: inline-block;
                     .fa-solid {
                         color: #8e44ad;
+                        &:hover {
+                            cursor: pointer;
+                        }
                     }
                     .fa-trash-can{
                         margin-left: 5px;
