@@ -19,9 +19,15 @@ form.addEventListener('submit', (e) => {
             body : JSON.stringify(tache)
         });
 
-        fechQuerry.then( async (resp) => {
+        fechQuerry.then( async resp => {
             if(resp.ok){
-                const data = await resp.json()
+                try {
+                    console.log(resp)
+                    const data = await resp.json()
+                    console.log(data.message);   
+                }catch(err){
+                    console.log(err)
+                }
             }
         })
 

@@ -41,7 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (is_null($respQuery)) {
             if (password_verify($password_user, $dataUser['password_user'])) {
                 $resp = json_encode($dataUser);
-                
+                $stmtSession = $pdo->prepare('INSERT INTO session VALUES (DEFAULT,:id_user)');
+                $stmtSession->bindValue(':id_user', $dataUser['id_user']);
+                $stmtSession->execute();
+                $id_session = $pdo->lastInsertId();
+                setcookie('session', $id_session, time() + 60 * 60 * 24, '', '', false, true);
                 echo $resp;
             } else {
                 http_response_code(401);
