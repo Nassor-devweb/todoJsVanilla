@@ -1,5 +1,5 @@
 .section--todo{
-    height: calc(100vh - 58px);
+    min-height: calc(100vh - 58px);
     padding-top: 50px;
     font-size: $fontSizePrimary ;
     @include displayFxCtrflxEnd;
@@ -53,7 +53,7 @@
             border-radius: 5px;
             box-shadow: var(--box-shadow);
             background-color: white;
-            padding: 20px 10px;
+            padding: 10px 20px 0px 20px;
             .task {
                 background-color: var(--divider);
                 border : 1px solid var(--dark);
@@ -65,11 +65,20 @@
                 .ckeckValue{
                     display: flex;
                     justify-content: flex-start;
+                    width: 70%;
                     span {
                         margin-left: 5px;
                     }
                     input{
                         cursor: pointer;
+                    }
+                    #udapte_tache{
+                        margin-left: 5px;
+                        display: inline-block;
+                        border: 1px solid var(--dark);
+                        border-radius: 3px;
+                        width: 100%;
+                        outline: none;
                     }
                 }
                 .icone {
@@ -81,7 +90,28 @@
                         }
                     }
                     .fa-trash-can{
-                        margin-left: 5px;
+                        margin-left: 20px;
+                    }
+                }
+                .btn-validate{
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 30%;
+                    .icoValidate{
+                       @extend %divIcone;
+                       
+                    }
+
+                    .icoCancel{
+                       @extend %divIcone;
+                       color: red;
+                       margin-left: 10px;
+                    }
+
+                    border-radius: 3px;
+                    cursor: pointer;
+                    .fa-circle-check{
+                        color: #8e44ad;
                     }
                 }
             }

@@ -7,7 +7,7 @@
         height: 50%;
         border: 1px solid var(--accent);
         box-shadow: var(--box-shadow);
-        padding: 0px 40px;
+        padding: 10px 40px;
         border-radius: 5px;
         display: flex;
         flex-wrap: wrap;
@@ -27,7 +27,7 @@
         button {
             display: block;
             margin: auto;
-            margin-top: 20px;
+            
             padding: 5px 20px;
             border-radius: 5px;
             font-weight: bold;
@@ -40,9 +40,10 @@
         .error{
             display: block;
             color : red ;
-            margin-top: 20px;
+            margin-top: 10px;
             width: 100%;
             text-align: center;
+            font-size: 1.2rem;
         }
     }
 }

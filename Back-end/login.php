@@ -50,14 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 http_response_code(401);
                 $error = [];
-                $errors['erreur'] = "Le mots de passe est incorrect";
+                $errors['erreur'] = "Le mots de passe est incorrect ! !";
                 $resp = json_encode($errors);
                 echo $resp;
             }
         } else {
             http_response_code(401);
             $error = [];
-            $errors['erreur'] = "Vous n'êtes pas inscris veuillez vous inscrire";
+            $errors['erreur'] = "Vous n'êtes pas inscris veuillez vous inscrire ! !";
             $resp = json_encode($errors);
             echo $resp;
         }
