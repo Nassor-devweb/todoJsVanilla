@@ -23,29 +23,25 @@ form.addEventListener('submit',(e) => {
     formData.append('email', user.email);
     formData.append('password', user.password);
     formData.append('path_photo', user.path_photo);
-    const boundary = '-------boundary-123456789';
     console.log(formData)
 
     const promiseSubmit = fetch('http://localhost:3000/inscription.php', {
-        // headers : {
-        //     'Content-Type': `multipart/form-data; boundary=${boundary}`,
-        // },
         method : "POST",
         body : formData
     })
 
-    // promiseSubmit.then(async resp => {
-    //     try {
-    //         if(!resp.ok){
-    //             const body = await resp.json();
-    //             error.textContent = body.erreur;            
-    //         }else{
-    //             location.href = './login.html'
-    //         }
-    //     }catch(err){
-    //         console.log(err)
-    //     }
-    // })
+    promiseSubmit.then(async resp => {
+        try {
+            if(!resp.ok){
+                const body = await resp.json();
+                error.textContent = body.erreur;            
+            }else{
+                location.href = './login.html'
+            }
+        }catch(err){
+            console.log(err)
+        }
+    })
 
      
 })

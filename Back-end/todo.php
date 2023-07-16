@@ -9,13 +9,16 @@ $isConnect = Auth::authUser();
 function getAllTache(array $dataUser)
 {
     global $pdo;
+    global $isConnect;
     $JsonTache = [];
     $stmtGetTache = $pdo->prepare('SELECT * from  tache where id_user = :id_user ORDER BY finished_tache ASC , date_created DESC');
     $stmtGetTache->bindValue(':id_user', $dataUser['id_user']);
     $stmtGetTache->execute();
     $allTache = $stmtGetTache->fetchAll();
     if (gettype($allTache) === 'array') {
-        return json_encode($allTache);
+        $JsonTache['dataUser'] = $isConnect;
+        $JsonTache['listTache'] = $allTache;
+        return json_encode($JsonTache);
     } else {
         return json_encode($JsonTache);
     }

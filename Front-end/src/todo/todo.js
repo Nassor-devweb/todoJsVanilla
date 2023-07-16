@@ -4,6 +4,7 @@ const form = document.querySelector('#formTache');
 const inputTache = document.querySelector('#tache');
 const error = document.querySelector('.error');
 const content = document.querySelector('.content');
+const contentImg = document.querySelector('.nav__list');
 
 
 
@@ -75,8 +76,9 @@ function EditTache(newValue,idTache){
 
 
 function afficherListe(dataListe){
-    if(dataListe.length > 0){
-        const liContent = dataListe.map((curr) => {
+    if(dataListe['listTache'].length > 0){
+        const liContent = dataListe['listTache'].map((curr) => {
+
             const li = document.createElement('li'); // liContent
             li.setAttribute('class','task');
 
@@ -179,6 +181,10 @@ function afficherListe(dataListe){
 
             return li;
         }) 
+        const photo = document.createElement('img');
+        photo.setAttribute('src',dataListe['dataUser'].photo_user)
+        photo.setAttribute('alt','photo de profil')
+        contentImg.append(photo);
 
         const listInsert = document.querySelector('.list')
         const listContainer = document.createElement('div');
