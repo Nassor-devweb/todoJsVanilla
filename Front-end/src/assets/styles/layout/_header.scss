@@ -1,11 +1,21 @@
 .header{
-    @include displayFxBtwCtr;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
     background-color: var(--dark);
     font-size: $fontSizePrimary;
+    height: 50px;
     .header__heading {
-        padding: 10px 10px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 1.6rem;
+        padding-left: 20px;
     }
     .nav {
+        grid-column: 3/4;
+        display: flex;
+        justify-content: center;
+        font-size: 1.6rem;
         .nav__list {
             @include displayFxBtwCtr;
             a{

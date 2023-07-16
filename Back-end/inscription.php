@@ -10,13 +10,11 @@ const CHAMP = 'Veuillez remplir tout les champs';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
-    $user = [];
-    $donnees = null;
-    $json = file_get_contents('php://input');
-    $donnees = json_decode($json, true);
-    $user_name = $donnees['name'];
-    $user_email = $donnees['email'];
-    $user_password = $donnees['password'];
+    //echo json_encode($_FILES);
+    $user_name = $_POST['name'];
+    $user_email = $_POST['email'];
+    $user_password = $_POST['password'];
+
 
     $error = match (true) {
         (trim($user_name) && trim($user_email) && trim($user_password)) === false =>  CHAMP,
@@ -27,22 +25,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     };
 
     if (!$error) {
-        $user = filter_var_array($donnees, [
+        $user = filter_var_array($_POST, [
             'name' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
             'email' => FILTER_SANITIZE_EMAIL,
         ]);
-        $user['password'] = password_hash($donnees['password'], PASSWORD_ARGON2I);
+        $user['password'] = password_hash($_POST['password'], PASSWORD_ARGON2I);
+
+        $path_photo = '';
+        $finalyLink = '';
+
+        if (isset($_FILES['path_photo'])) {
+            $tmpFilePath = $_FILES['path_photo']['tmp_name'];
+            $path_photo = 'img/' . time() . '-' . $_FILES['path_photo']['name'];
+            move_uploaded_file($tmpFilePath, $path_photo);
+        }
+        if ($path_photo) {
+            $finalyLink = 'http://localhost:3000/' . $path_photo;
+        } else {
+            $finalyLink = '';
+        }
+
+
+        $user['link'] = $finalyLink;
 
         $stmt = $pdo->prepare('INSERT INTO user VALUES (
-            DEFAULT,
-            :name_user,
-            :email_user,
-            :password_user
-        )');
+                DEFAULT,
+                :name_user,
+                :email_user,
+                :password_user,
+                :photo_user
+            )');
 
         $stmt->bindValue(":name_user", $user['name']);
         $stmt->bindValue(":email_user", $user['email']);
         $stmt->bindValue(":password_user", $user['password']);
+        $stmt->bindValue(":photo_user", $user['link']);
+
         $respQuery = null;
         try {
             $stmt->execute();

@@ -9,34 +9,43 @@ form.addEventListener('submit',(e) => {
     const name = document.querySelector('#name');
     const email = document.querySelector('#email');
     const password = document.querySelector('#password');
+    const photo_user = document.querySelector('#img')
 
     const user = {
         name : name.value,
         email : email.value,
         password : password.value,
+        path_photo : photo_user.files[0]
     }
-    
-    console.log(user.name,user.email,user.password)
+
+    let formData = new FormData();
+    formData.append('name', user.name);
+    formData.append('email', user.email);
+    formData.append('password', user.password);
+    formData.append('path_photo', user.path_photo);
+    const boundary = '-------boundary-123456789';
+    console.log(formData)
+
     const promiseSubmit = fetch('http://localhost:3000/inscription.php', {
-        headers : {
-            'Content-Type' : 'application/json'
-        },
+        // headers : {
+        //     'Content-Type': `multipart/form-data; boundary=${boundary}`,
+        // },
         method : "POST",
-        body : JSON.stringify(user)
+        body : formData
     })
 
-    promiseSubmit.then(async resp => {
-        try {
-            if(!resp.ok){
-                const body = await resp.json();
-                error.textContent = body.erreur;            
-            }else{
-                location.href = './login.html'
-            }
-        }catch(err){
-            console.log(err)
-        }
-    })
+    // promiseSubmit.then(async resp => {
+    //     try {
+    //         if(!resp.ok){
+    //             const body = await resp.json();
+    //             error.textContent = body.erreur;            
+    //         }else{
+    //             location.href = './login.html'
+    //         }
+    //     }catch(err){
+    //         console.log(err)
+    //     }
+    // })
 
      
 })
