@@ -2,9 +2,14 @@
     min-height: calc(100vh - 58px);
     padding-top: 50px;
     font-size: $fontSizePrimary ;
-    @include displayFxCtrflxEnd;
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    //@include displayFxCtrflxEnd;
+
     .content {
-        width: 400px;max-width: 50%;
+        //width: 400px;
+        //max-width: 50%;
+        grid-column-start: 2;
         form{
             display: flex;
             justify-content: flex-start;
