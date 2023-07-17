@@ -5,7 +5,28 @@ const inputTache = document.querySelector('#tache');
 const error = document.querySelector('.error');
 const content = document.querySelector('.content');
 const contentImg = document.querySelector('.nav__list');
+const profilMenu = document.querySelector('.userprofil');
+const disconect = document.querySelector('.disconect');
 
+profilMenu.addEventListener('mouseover',(e) =>{
+    profilMenu.removeAttribute('id')
+})
+
+profilMenu.addEventListener('mouseout',(e) =>{
+    profilMenu.setAttribute('id','visiblemenu')
+})
+
+disconect.addEventListener('click',async (e)=>{
+    profilMenu.dispatchEvent(new Event('mouseout'))
+    try{
+        const disconectQuerry = fetch('http://localhost:3000/logout.php');
+        disconectQuerry.then((resp) =>{
+            location.href = './login.html'
+        })
+    }catch (err){
+        console.log(err)
+    }
+})
 
 
 function deleteTache(idTache){
@@ -181,10 +202,21 @@ function afficherListe(dataListe){
 
             return li;
         }) 
+        const arrowProfile = document.createElement('i')
+        arrowProfile.setAttribute('class','fa-solid');
+        arrowProfile.classList.add('fa-sort-down');
+        arrowProfile.addEventListener('mouseover',(e)=>{
+            profilMenu.removeAttribute('id');
+        })
         const photo = document.createElement('img');
         photo.setAttribute('src',dataListe['dataUser'].photo_user)
-        photo.setAttribute('alt','photo de profil')
-        contentImg.append(photo);
+        photo.setAttribute('alt','photo de profil');
+        photo.setAttribute('id','photoUser')
+        const photoUser = document.querySelector('#photoUser');
+        if(photoUser){
+            photoUser.remove();
+        }
+        contentImg.append(photo,arrowProfile);
 
         const listInsert = document.querySelector('.list')
         const listContainer = document.createElement('div');
